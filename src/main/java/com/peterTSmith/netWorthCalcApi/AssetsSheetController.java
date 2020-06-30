@@ -39,7 +39,7 @@ public class AssetsSheetController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/assetsSheet")
-    public BalanceSheet GetAssetsSheet(){
+    public BalanceSheet GetAssetsSheet() {
         return assetsSheet;
     }
     
