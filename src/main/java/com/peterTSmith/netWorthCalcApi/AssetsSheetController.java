@@ -34,7 +34,7 @@ public class AssetsSheetController {
         assetsSheetContent[0] = new BalanceSheetContent("Cash and Investments", cashAndInvestmentsFields);
         assetsSheetContent[1] = new BalanceSheetContent("Long Term Investments", longTermInvestmentsFields);
 
-        assetsSheet = new BalanceSheet("Assets", assetsSheetContent);
+        assetsSheet = new BalanceSheet("Assets", assetsSheetContent, 0);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
