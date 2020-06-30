@@ -1,6 +1,7 @@
 package com.peterTSmith.netWorthCalcApi;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.peterTSmith.netWorthCalcApi.objects.BalanceSheet.*;
@@ -36,6 +37,7 @@ public class AssetsSheetController {
         assetsSheet = new BalanceSheet("Assets", assetsSheetContent);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/assetsSheet")
     public BalanceSheet GetAssetsSheet(){
         return assetsSheet;
