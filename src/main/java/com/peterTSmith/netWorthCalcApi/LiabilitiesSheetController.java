@@ -2,6 +2,8 @@ package com.peterTSmith.netWorthCalcApi;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.peterTSmith.netWorthCalcApi.objects.BalanceSheet.*;
@@ -36,5 +38,10 @@ public class LiabilitiesSheetController {
     @GetMapping("/liabilitiesSheet")
     public BalanceSheet GetLiabilitiesSheet() {
         return liabilitiesSheet;
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/liabilitiesSheet")
+    public void PostLiabilitiesSheet(@RequestBody Field liabilitiesSheetField) {
     }
 }
