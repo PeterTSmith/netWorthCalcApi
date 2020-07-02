@@ -20,7 +20,8 @@ public class AssetValuesController {
 
     AssetValuesController(BalanceValueRepository repositoryIn) {
         this.repository = repositoryIn;
-        this.repository.save(new BalanceValue(0, 0, 5544, true, false, 0));
+        this.repository.save(new BalanceValue(0, 0, 5544, "asset", 0));
+        this.repository.save(new BalanceValue(0, 0, 44, "asset", 0));
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -31,7 +32,7 @@ public class AssetValuesController {
         List<BalanceValue> values = repository.findAll();
 
         for(int i = 0; i < values.size(); i++) {
-            if(values.get(i).getDocId() == docId && values.get(i).getIsAsset()){
+            if(values.get(i).getDocId() == docId && values.get(i).getValueType() == "asset"){
                 returnValue.add(values.get(i));
             }
         }
@@ -41,8 +42,7 @@ public class AssetValuesController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/assetValues")
     public void postAssetValues(@RequestBody BalanceValue value) {
-        //this.repository.save(value);
-        System.out.println(value);
+        this.repository.save(value);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -53,7 +53,7 @@ public class AssetValuesController {
         List<BalanceValue> values = repository.findAll();
 
         for(int i = 0; i < values.size(); i++) {
-            if(values.get(i).getDocId() == docId && values.get(i).getIsAsset()){
+            if(values.get(i).getDocId() == docId && values.get(i).getValueType() == "asset"){
                 totalValue += values.get(i).getValue();
             }
         }

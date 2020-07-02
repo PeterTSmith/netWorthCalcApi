@@ -28,9 +28,9 @@ public class NetWorthController {
 
         for(int i = 0; i < values.size(); i++) {
             if(values.get(i).getDocId() == docId){
-                if(values.get(i).getIsAsset()){
+                if(values.get(i).getValueType() == "asset"){
                     totalValue += values.get(i).getValue();
-                }else if(values.get(i).getIsLiability()){
+                }else if(values.get(i).getValueType() == "liability"){
                     totalValue -= values.get(i).getValue();
                 }
             }

@@ -4,17 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity
+@IdClass(BalanceValueId.class)
 public class BalanceValue {
-    @Id
+    /*@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    private long id;*/
+    @Id
     private long docId;
+    @Id
     private long fieldId;
     private long value;
-    private boolean isAsset;
-    private boolean isLiability;
+    private String valueType;
     private long dateModified;
 
     public BalanceValue() {
@@ -24,18 +27,21 @@ public class BalanceValue {
         dateModified = 0;
     }
 
-    public BalanceValue(long docIdIn, long fieldIdIn, long valueIn, boolean isAssetIn, boolean isLiabilityIn, long dateModifiedIn) {
+    public BalanceValue(long docIdIn, long fieldIdIn, long valueIn, String valueTypeIn, long dateModifiedIn) {
         docId = docIdIn;
         fieldId = fieldIdIn;
         value = valueIn;
-        isAsset = isAssetIn;
-        isLiability = isLiabilityIn;
+        valueType = valueTypeIn;
         dateModified = dateModifiedIn;
     }
 
-    public long getId() {
+    /*public long getId() {
         return id;
     }
+
+    public void setId(long idIn) {
+        id = idIn;
+    }*/
 
     public long getDocId() {
         return docId;
@@ -49,12 +55,8 @@ public class BalanceValue {
         return value;
     }
 
-    public boolean getIsAsset() {
-        return isAsset;
-    }
-
-    public boolean getIsLiability() {
-        return isLiability;
+    public String getValueType() {
+        return valueType;
     }
 
     public long getDateModified() {

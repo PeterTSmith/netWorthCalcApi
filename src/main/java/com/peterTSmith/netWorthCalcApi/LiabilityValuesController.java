@@ -20,7 +20,7 @@ public class LiabilityValuesController {
 
     public LiabilityValuesController(BalanceValueRepository repositoryIn) {
         this.repository = repositoryIn;
-        this.repository.save(new BalanceValue(0, 17, 5744, false, true, 0));
+        this.repository.save(new BalanceValue(0, 17, 5744, "liability", 0));
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -31,7 +31,7 @@ public class LiabilityValuesController {
         List<BalanceValue> values = repository.findAll();
 
         for(int i = 0; i < values.size(); i++) {
-            if(values.get(i).getDocId() == docId && values.get(i).getIsLiability()){
+            if(values.get(i).getDocId() == docId && values.get(i).getValueType() == "liability"){
                 returnValue.add(values.get(i));
             }
         }
@@ -41,7 +41,7 @@ public class LiabilityValuesController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/liabilityValues")
     public void postLiabilityValues(@RequestBody BalanceValue value) {
-        //this.repository.save(value);
+        this.repository.save(value);
         System.out.println(value);
     }
 
@@ -53,7 +53,7 @@ public class LiabilityValuesController {
         List<BalanceValue> values = repository.findAll();
 
         for(int i = 0; i < values.size(); i++) {
-            if(values.get(i).getDocId() == docId && values.get(i).getIsLiability()){
+            if(values.get(i).getDocId() == docId && values.get(i).getValueType() == "liability"){
                 totalValue += values.get(i).getValue();
             }
         }
