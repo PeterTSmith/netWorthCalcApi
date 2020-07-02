@@ -1,20 +1,21 @@
 package com.peterTSmith.netWorthCalcApi.objects.BalanceSheet;
 
-public class Field {
-    private String id;
+public class BalanceSheetField {
+
+    private long id;
     private String name;
 
-    public Field() {
-        id = "";
+    public BalanceSheetField() {
+        id = 0;
         name = "";
     }
 
-    public Field(String idIn, String nameIn) {
+    public BalanceSheetField(long idIn, String nameIn) {
         id = idIn;
         name = nameIn;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 

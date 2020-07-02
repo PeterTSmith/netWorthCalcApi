@@ -1,42 +1,63 @@
 package com.peterTSmith.netWorthCalcApi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.peterTSmith.netWorthCalcApi.objects.BalanceValue.BalanceValue;
+import com.peterTSmith.netWorthCalcApi.repos.BalanceValueRepository;
 
 @RestController
 public class AssetValuesController {
 
-    private BalanceValue[] assetValues;
+    private final BalanceValueRepository repository;
 
-    AssetValuesController() {
-        assetValues = new BalanceValue[1];
-        assetValues[0] = new BalanceValue("chequing", 5544, 0);
+    AssetValuesController(BalanceValueRepository repositoryIn) {
+        this.repository = repositoryIn;
+        this.repository.save(new BalanceValue(0, 0, 5544, true, false, 0));
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/assetValues")
-    public BalanceValue[] getAssetValues() {
-        return assetValues;
+    public List<BalanceValue> getAssetValues(@RequestParam(value="docId") long docId) {
+
+        ArrayList<BalanceValue> returnValue = new ArrayList<BalanceValue>();
+        List<BalanceValue> values = repository.findAll();
+
+        for(int i = 0; i < values.size(); i++) {
+            if(values.get(i).getDocId() == docId && values.get(i).getIsAsset()){
+                returnValue.add(values.get(i));
+            }
+        }
+        return returnValue;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/assetValues")
     public void postAssetValues(@RequestBody BalanceValue value) {
-        System.out.println(value.getId());
+        //this.repository.save(value);
+        System.out.println(value);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/totalAssetValue")
-    public long getTotalAssetValue() {
-        long totalAssets = 0;
-        for(int i = 0; i < assetValues.length; i++) {
-            totalAssets += assetValues[i].getValue();
+    public long getTotalAssetValue(@RequestParam(value="docId") long docId) {
+
+        long totalValue = 0;
+        List<BalanceValue> values = repository.findAll();
+
+        for(int i = 0; i < values.size(); i++) {
+            if(values.get(i).getDocId() == docId && values.get(i).getIsAsset()){
+                totalValue += values.get(i).getValue();
+            }
         }
-        return totalAssets;
+
+        return totalValue;
     }
 }

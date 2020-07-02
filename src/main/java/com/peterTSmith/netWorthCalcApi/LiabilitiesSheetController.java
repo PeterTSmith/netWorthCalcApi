@@ -14,18 +14,18 @@ public class LiabilitiesSheetController {
     private BalanceSheet liabilitiesSheet;
 
     LiabilitiesSheetController() {
-        Field[] shortTermLiabilities = new Field[3];
-        shortTermLiabilities[0] = new Field("creditCard1", "Chequing");
-        shortTermLiabilities[1] = new Field("creditCard2", "Savings For Taxes");
-        shortTermLiabilities[2] = new Field("others", "(others...)");
+        BalanceSheetField[] shortTermLiabilities = new BalanceSheetField[3];
+        shortTermLiabilities[0] = new BalanceSheetField(14, "Chequing");
+        shortTermLiabilities[1] = new BalanceSheetField(15, "Savings For Taxes");
+        shortTermLiabilities[2] = new BalanceSheetField(16, "(others...)");
 
-        Field[] longTermDebt = new Field[6];
-        longTermDebt[0] = new Field("mortgage1", "Mortgage 1");
-        longTermDebt[1] = new Field("mortgage2", "Mortgage 2");
-        longTermDebt[2] = new Field("lineOfCredit", "Line of Credit");
-        longTermDebt[3] = new Field("investmentLoan", "Investment Loan");
-        longTermDebt[4] = new Field("studentLoan", "Student Loan");
-        longTermDebt[5] = new Field("carLoan", "Car Loan");
+        BalanceSheetField[] longTermDebt = new BalanceSheetField[6];
+        longTermDebt[0] = new BalanceSheetField(17, "Mortgage 1");
+        longTermDebt[1] = new BalanceSheetField(18, "Mortgage 2");
+        longTermDebt[2] = new BalanceSheetField(19, "Line of Credit");
+        longTermDebt[3] = new BalanceSheetField(20, "Investment Loan");
+        longTermDebt[4] = new BalanceSheetField(21, "Student Loan");
+        longTermDebt[5] = new BalanceSheetField(22, "Car Loan");
 
         BalanceSheetContent[] liabilitiesSheetContent = new BalanceSheetContent[2];
         liabilitiesSheetContent[0] = new BalanceSheetContent("Short Term Liabilities", shortTermLiabilities);
@@ -42,6 +42,6 @@ public class LiabilitiesSheetController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/liabilitiesSheet")
-    public void PostLiabilitiesSheet(@RequestBody Field liabilitiesSheetField) {
+    public void PostLiabilitiesSheet(@RequestBody BalanceSheetField liabilitiesSheetField) {
     }
 }

@@ -16,7 +16,7 @@ public class BalanceSheet {
         content = contentIn;
         dateModified = dateModifiedIn;
     }
-
+    
     public String getTitle() {
         return title;
     }

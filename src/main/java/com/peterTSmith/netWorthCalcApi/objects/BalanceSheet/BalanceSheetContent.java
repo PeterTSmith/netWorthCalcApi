@@ -1,15 +1,16 @@
 package com.peterTSmith.netWorthCalcApi.objects.BalanceSheet;
 
 public class BalanceSheetContent {
+
     private String title;
-    private Field[] fields;
+    private BalanceSheetField[] fields;
     
     public BalanceSheetContent() {
         title = "";
         fields = null;
     }
 
-    public BalanceSheetContent(String titleIn, Field[] fieldsIn) {
+    public BalanceSheetContent(String titleIn, BalanceSheetField[] fieldsIn) {
         title = titleIn;
         fields = fieldsIn;
     }
@@ -18,7 +19,7 @@ public class BalanceSheetContent {
         return title;
     }
 
-    public Field[] getFields() {
+    public BalanceSheetField[] getFields() {
         return fields;
     }
 }
