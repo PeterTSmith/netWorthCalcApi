@@ -1,17 +1,12 @@
 package com.peterTSmith.netWorthCalcApi.objects.BalanceValue;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
 @IdClass(BalanceValueId.class)
 public class BalanceValue {
-    /*@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;*/
     @Id
     private long docId;
     @Id
@@ -34,14 +29,6 @@ public class BalanceValue {
         valueType = valueTypeIn;
         dateModified = dateModifiedIn;
     }
-
-    /*public long getId() {
-        return id;
-    }
-
-    public void setId(long idIn) {
-        id = idIn;
-    }*/
 
     public long getDocId() {
         return docId;
